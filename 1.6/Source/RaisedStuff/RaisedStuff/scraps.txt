@@ -1,0 +1,137 @@
+﻿/*// TARGETER PATCH - Affects pawns, turrets, all kinds of things!
+[HarmonyPatch(typeof(AttackTargetFinder), "CanSee")]
+public static class Patch_RaisedTarget_AttackTargetFinder_CanSee 
+{
+    public static void Postfix(this Thing seer, Thing target, Func<IntVec3, bool> validator, ref bool __result, List<IntVec3> ___tempSourceList, List<IntVec3> ___tempDestList)
+    {
+        if (__result) return;
+        if (seer.Position.RaisedGridLevelBase(seer.Map) == 0 && target.Position.RaisedGridLevelBase(seer.Map) == 0) return;
+        ShootLeanUtility.LeanShootingSourcesFromTo(seer.Position, target.Position, seer.Map, ___tempSourceList);
+        for (int i = 0; i < ___tempDestList.Count; i++)
+        {
+            if (RaisedStuffUtility.LineOfSight(seer.Position, ___tempDestList[i], seer.Map, skipFirstCell: true, validator))
+            {
+                __result = true;
+                return;
+            }
+        }
+        ShootLeanUtility.LeanShootingSourcesFromTo(seer.Position, target.Position, seer.Map, ___tempSourceList);
+        for (int j = 0; j < ___tempSourceList.Count; j++)
+        {
+            if (!___tempSourceList[j].CanBeSeenOver(seer.Map))
+            {
+                continue;
+            }
+
+            for (int k = 0; k < ___tempDestList.Count; k++)
+            {
+                if (RaisedStuffUtility.LineOfSight(___tempSourceList[j], ___tempDestList[k], seer.Map, skipFirstCell: true, validator))
+                {
+                    __result = true;
+                    return;
+                }
+            }
+        }
+    }
+}*/
+
+/* // VERB PATCH - Verbs should target raised objects, within reason!
+[HarmonyPatch(typeof(Verb), "CanHitCellFromCellIgnoringRange")]
+public static class Patch_RaisedTarget_Verb_CanHitCellFromCell
+{
+    public static void Postfix(ref bool __result, Thing ___caster, VerbProperties ___verbProps, IntVec3 sourceSq, IntVec3 targetLoc, bool includeCorners = false)
+    {
+        if (__result || (___verbProps.mustCastOnOpenGround && (!targetLoc.Standable(___caster.Map) || ___caster.Map.thingGrid.CellContains(targetLoc, ThingCategory.Pawn)))) return;
+        if (___verbProps.requireLineOfSight)
+        {
+            if (sourceSq.RaisedGridLevelBase(___caster.Map) == 0 && targetLoc.RaisedGridLevelBase(___caster.Map) == 0) return;
+            if (!includeCorners)
+            {
+                if (!RaisedStuffUtility.LineOfSight(sourceSq, targetLoc, ___caster.Map, skipFirstCell: true))
+                {
+                    return;
+                }
+            }
+            else if (!RaisedStuffUtility.LineOfSightToEdges(sourceSq, targetLoc, ___caster.Map, skipFirstCell: true))
+            {
+                return;
+            }
+            __result = true;
+        }
+    }
+}*/
+
+/*[HarmonyPatch(typeof(Verb_ArcSprayProjectile), "HitCell")]
+public static class Patch_RaisedTarget_ArcSprayProjectile_HitCell
+{
+    public static void Postfix(IntVec3 cell, Verb_ArcSprayProjectile __instance, Thing ___caster, VerbProperties ___verbProps, bool ___preventFriendlyFire)
+    {
+        if (__instance.CurrentTarget.Cell.IsValid && (___caster.Position.RaisedGridLevelBase(___caster.Map) > 0 || __instance.CurrentTarget.Cell.RaisedGridLevelBase(___caster.Map) > 0))
+        {
+            Map map = ___caster.Map;
+            if (!GenSight.LineOfSight(___caster.Position, cell, map, skipFirstCell: true) && RaisedStuffUtility.LineOfSight(___caster.Position, cell, map, skipFirstCell: true))
+            {
+                ((Projectile)GenSpawn.Spawn(___verbProps.defaultProjectile, ___caster.Position, map)).Launch(___caster, ___caster.DrawPos, cell, cell, ProjectileHitFlags.IntendedTarget, ___preventFriendlyFire);
+            }
+        }
+    }
+}*/
+
+/*[HarmonyPatch(typeof(GenThing), "TrueCenter", [typeof(Thing)])]
+    public static class Patch_RaisedStuff_RaisedPosition
+    {
+        public static Vector3 baseOffset = Vector3.forward * 0.25f + Vector3.up * 0.25f;
+        public static void PostFix(this Thing t, ref Vector3 __result)
+        {
+            if (t is Building && t.Map != null && !t.HasComp<CompScaffold>())
+            {
+                __result += t.Position.RaisedGridLevelBase(t.Map) * baseOffset;
+            }
+        }
+    }*/
+
+
+    
+    /*    public static bool CanRebuild(CompScaffold plat, Pawn p, bool forced = false, JobDef jobForReservation = null)
+    {
+        if (GenConstruct.FirstBlockingThing(plat.parent, p) != null)
+        {
+            return false;
+        }
+
+        if (!GenConstruct.CanTouchTargetFromValidCell(plat.parent, p))
+        {
+            return false;
+        }
+
+        if (jobForReservation != null)
+        {
+            if (!p.Spawned)
+            {
+                return false;
+            }
+
+            if (!p.Map.reservationManager.OnlyReservationsForJobDef(plat.parent, jobForReservation))
+            {
+                Pawn pawn = p.Map.reservationManager.FirstRespectedReserver(plat.parent, p);
+                if (pawn != null)
+                {
+                    JobFailReason.Is("ReservedBy".Translate(pawn.LabelShort, pawn));
+                }
+
+                return false;
+            }
+
+            if (!p.CanReach(plat.parent, PathEndMode.Touch, forced ? Danger.Deadly : p.NormalMaxDanger()))
+            {
+                JobFailReason.Is("NoPath".Translate());
+                return false;
+            }
+        }
+        else if (!p.CanReserveAndReach(plat.parent, PathEndMode.Touch, forced ? Danger.Deadly : p.NormalMaxDanger(), 1, -1, null, forced))
+        {
+            return false;
+        }
+
+        return true;
+    }*/

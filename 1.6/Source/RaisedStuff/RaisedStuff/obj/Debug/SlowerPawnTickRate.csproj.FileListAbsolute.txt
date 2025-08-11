@@ -1,0 +1,5 @@
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\ARK - Slaves Are Furniture\1.6\Assemblies\SlowerPawnTickRate.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\ARK - Slower Pawn Tick Rate\1.6\Source\SlowerPawnTickRate\SlowerPawnTickRate\obj\Debug\SlowerPawnTickRate.csproj.AssemblyReference.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\ARK - Slower Pawn Tick Rate\1.6\Source\SlowerPawnTickRate\SlowerPawnTickRate\obj\Debug\SlowerPawnTickRate.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\ARK - Slower Pawn Tick Rate\1.6\Source\SlowerPawnTickRate\SlowerPawnTickRate\obj\Debug\SlowerPawnTickRate.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\ARK - Slower Pawn Tick Rate\1.6\Assemblies\SlowerPawnTickRate.dll

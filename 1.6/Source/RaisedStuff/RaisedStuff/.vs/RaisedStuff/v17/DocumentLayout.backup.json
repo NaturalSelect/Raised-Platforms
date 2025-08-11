@@ -1,0 +1,134 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{530C59BF-C16E-482D-9F18-9D5B748C6EB7}|RaisedStuff.csproj|C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\raisedstuffutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{530C59BF-C16E-482D-9F18-9D5B748C6EB7}|RaisedStuff.csproj|solutionrelative:raisedstuffutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{530C59BF-C16E-482D-9F18-9D5B748C6EB7}|RaisedStuff.csproj|c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\mjeiouws_raisedstuff\\1.6\\source\\raisedstuff\\raisedstuff\\harmonyinit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{530C59BF-C16E-482D-9F18-9D5B748C6EB7}|RaisedStuff.csproj|solutionrelative:harmonyinit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{530C59BF-C16E-482D-9F18-9D5B748C6EB7}|RaisedStuff.csproj|C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\compscaffold.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{530C59BF-C16E-482D-9F18-9D5B748C6EB7}|RaisedStuff.csproj|solutionrelative:compscaffold.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{530C59BF-C16E-482D-9F18-9D5B748C6EB7}|RaisedStuff.csproj|C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\jobdriver_rebuildplatform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{530C59BF-C16E-482D-9F18-9D5B748C6EB7}|RaisedStuff.csproj|solutionrelative:jobdriver_rebuildplatform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{530C59BF-C16E-482D-9F18-9D5B748C6EB7}|RaisedStuff.csproj|C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\compproperties_scaffold.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{530C59BF-C16E-482D-9F18-9D5B748C6EB7}|RaisedStuff.csproj|solutionrelative:compproperties_scaffold.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{530C59BF-C16E-482D-9F18-9D5B748C6EB7}|RaisedStuff.csproj|C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\gizmo_platformlevel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{530C59BF-C16E-482D-9F18-9D5B748C6EB7}|RaisedStuff.csproj|solutionrelative:gizmo_platformlevel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{530C59BF-C16E-482D-9F18-9D5B748C6EB7}|RaisedStuff.csproj|C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\patch_raisedstuff_combat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{530C59BF-C16E-482D-9F18-9D5B748C6EB7}|RaisedStuff.csproj|solutionrelative:patch_raisedstuff_combat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HarmonyInit.cs",
+              "DocumentMoniker": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\HarmonyInit.cs",
+              "RelativeDocumentMoniker": "HarmonyInit.cs",
+              "ToolTip": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\HarmonyInit.cs",
+              "RelativeToolTip": "HarmonyInit.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-09T10:20:28.674Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RaisedStuffUtility.cs",
+              "DocumentMoniker": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\RaisedStuffUtility.cs",
+              "RelativeDocumentMoniker": "RaisedStuffUtility.cs",
+              "ToolTip": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\RaisedStuffUtility.cs",
+              "RelativeToolTip": "RaisedStuffUtility.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T16:49:30.327Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Patch_RaisedStuff_Combat.cs",
+              "DocumentMoniker": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\Patch_RaisedStuff_Combat.cs",
+              "RelativeDocumentMoniker": "Patch_RaisedStuff_Combat.cs",
+              "ToolTip": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\Patch_RaisedStuff_Combat.cs",
+              "RelativeToolTip": "Patch_RaisedStuff_Combat.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T16:45:59.654Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Gizmo_PlatformLevel.cs",
+              "DocumentMoniker": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\Gizmo_PlatformLevel.cs",
+              "RelativeDocumentMoniker": "Gizmo_PlatformLevel.cs",
+              "ToolTip": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\Gizmo_PlatformLevel.cs",
+              "RelativeToolTip": "Gizmo_PlatformLevel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T16:00:32.648Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CompProperties_Scaffold.cs",
+              "DocumentMoniker": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\CompProperties_Scaffold.cs",
+              "RelativeDocumentMoniker": "CompProperties_Scaffold.cs",
+              "ToolTip": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\CompProperties_Scaffold.cs",
+              "RelativeToolTip": "CompProperties_Scaffold.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T14:00:18.894Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CompScaffold.cs",
+              "DocumentMoniker": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\CompScaffold.cs",
+              "RelativeDocumentMoniker": "CompScaffold.cs",
+              "ToolTip": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\CompScaffold.cs",
+              "RelativeToolTip": "CompScaffold.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-02T17:21:01.89Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "JobDriver_RebuildPlatform.cs",
+              "DocumentMoniker": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\JobDriver_RebuildPlatform.cs",
+              "RelativeDocumentMoniker": "JobDriver_RebuildPlatform.cs",
+              "ToolTip": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\JobDriver_RebuildPlatform.cs",
+              "RelativeToolTip": "JobDriver_RebuildPlatform.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T15:19:19.351Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

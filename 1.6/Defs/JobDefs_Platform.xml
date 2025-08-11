@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!--============= Construction and repair ===============-->
+
+  <JobDef>
+    <defName>MJ_RaisedStuff_RebuildPlatform</defName>
+    <driverClass>RaisedStuff.JobDriver_RebuildPlatform</driverClass>
+    <reportString>rebuilding TargetA.</reportString>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+
+</Defs>

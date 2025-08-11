@@ -1,0 +1,4 @@
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Mjeiouws_\1.6\Source\RoofTurrets\RoofTurrets\obj\Debug\RoofTurrets.csproj.AssemblyReference.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Mjeiouws_\1.6\Source\RoofTurrets\RoofTurrets\obj\Debug\RoofTurrets.csproj.CoreCompileInputs.cache
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Mjeiouws_\1.6\Assemblies\RaisedStuff.dll
+C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Mjeiouws_\1.6\Source\RoofTurrets\RoofTurrets\obj\Debug\RaisedStuff.dll

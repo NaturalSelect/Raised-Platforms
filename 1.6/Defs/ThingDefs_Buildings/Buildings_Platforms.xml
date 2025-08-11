@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <DesignatorDropdownGroupDef>
+    <defName>MJ_RaisedStuff_PlatformGroup</defName>
+  </DesignatorDropdownGroupDef>
+
+  <ThingDef ParentName="BuildingBase" Name="MJ_RaisedStuff_PlatformBase" Abstract="True">
+    <thingClass>Building</thingClass>
+    <category>Building</category>
+    <description>An elevated steel platform capable of supporting buildings.</description>
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <fillPercent>0</fillPercent>
+    <building>
+      <ai_chillDestination>false</ai_chillDestination>
+      <isInert>true</isInert>
+      <isEdifice>false</isEdifice>
+      <paintable>true</paintable>
+    </building>
+    <coversFloor>true</coversFloor>
+    <!-- altitudeLayer>Floor</altitudeLayer -->
+    <!-- altitudeLayer>Building</altitudeLayer -->
+    <altitudeLayer>LowPlant</altitudeLayer>
+    <passability>Standable</passability>
+    <statBases>
+      <Flammability>0.0</Flammability>
+      <Beauty>1</Beauty>
+    </statBases>
+    <comps>
+      <li Class="RaisedStuff.CompProperties_Scaffold">
+        <level>1</level>
+      </li>
+    </comps>
+    <placeWorkers>
+      <li>RaisedStuff.PlaceWorker_Scaffold</li>
+    </placeWorkers>
+    <clearBuildingArea>false</clearBuildingArea>
+    <rotatable>false</rotatable>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <designationCategory>Security</designationCategory>
+    <designatorDropdown>MJ_RaisedStuff_PlatformGroup</designatorDropdown>
+    <researchPrerequisites>
+      <li>Smithing</li>
+    </researchPrerequisites>
+    <fillPercent>0.2</fillPercent>
+  </ThingDef>
+
+  <ThingDef ParentName="MJ_RaisedStuff_PlatformBase">
+    <defName>MJ_RaisedStuff_Platform4x4c</defName>
+    <label>large platform</label>
+    <graphicData>
+      <texPath>Things/Building/Platform/RaisedPlatform4x4c</texPath>
+      <drawSize>(4,4.5)</drawSize>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>800</MaxHitPoints>
+      <WorkToBuild>2200</WorkToBuild>
+    </statBases>
+    <costList>
+      <Steel>80</Steel>
+    </costList>
+    <size>(4,4)</size>
+  </ThingDef>
+
+  <ThingDef ParentName="MJ_RaisedStuff_PlatformBase">
+    <defName>MJ_RaisedStuff_Platform3x3c</defName>
+    <label>medium platform</label>
+    <graphicData>
+      <texPath>Things/Building/Platform/RaisedPlatform3x3c</texPath>
+      <drawSize>(3,3.5)</drawSize>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>400</MaxHitPoints>
+      <WorkToBuild>1000</WorkToBuild>
+    </statBases>
+    <costList>
+      <Steel>80</Steel>
+    </costList>
+    <size>(3,3)</size>
+  </ThingDef>
+
+  <ThingDef ParentName="MJ_RaisedStuff_PlatformBase">
+    <defName>MJ_RaisedStuff_Platform2x2c</defName>
+    <label>small platform</label>
+    <graphicData>
+      <texPath>Things/Building/Platform/RaisedPlatform2x2c</texPath>
+      <drawSize>(2,2.5)</drawSize>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>200</MaxHitPoints>
+      <WorkToBuild>500</WorkToBuild>
+    </statBases>
+    <costList>
+      <Steel>80</Steel>
+    </costList>
+    <size>(2,2)</size>
+  </ThingDef>
+
+  <ThingDef ParentName="MJ_RaisedStuff_PlatformBase">
+    <defName>MJ_RaisedStuff_Platform1x1c</defName>
+    <label>tiny platform</label>
+    <graphicData>
+      <texPath>Things/Building/Platform/RaisedPlatform1x1c</texPath>
+      <drawSize>(1,1.5)</drawSize>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>80</MaxHitPoints>
+      <WorkToBuild>120</WorkToBuild>
+    </statBases>
+    <costList>
+      <Steel>20</Steel>
+    </costList>
+    <size>(1,1)</size>
+  </ThingDef>
+
+</Defs>

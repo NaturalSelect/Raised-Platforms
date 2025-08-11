@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <WorkGiverDef>
+    <defName>MJ_RaisedStuff_RebuildPlatform</defName>
+    <label>rebuild platform</label>
+    <giverClass>RaisedStuff.WorkGiver_RebuildPlatform</giverClass>
+    <workType>Construction</workType>
+    <verb>rebuild</verb>
+    <gerund>rebuilding</gerund>
+    <priorityInType>75</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </WorkGiverDef>
+</Defs>
