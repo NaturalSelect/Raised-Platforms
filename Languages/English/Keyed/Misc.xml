@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <!-- Building placement restricters -->
+  <RaisedStuff_CannotPlaceOverExistingPlatform>Cannot build over existing platform.</RaisedStuff_CannotPlaceOverExistingPlatform>
+
+  <!-- CompScaffold -->
+  <RaisedStuff_Gizmos_RaisePlatforms>Raise platforms</RaisedStuff_Gizmos_RaisePlatforms>
+  <RaisedStuff_Gizmos_RaisePlatformsDesc>Raise platform height by one.</RaisedStuff_Gizmos_RaisePlatformsDesc>
+
+  <RaisedStuff_Gizmos_LowerPlatforms>Lower platforms</RaisedStuff_Gizmos_LowerPlatforms>
+  <RaisedStuff_Gizmos_LowerPlatformsDesc>Lower platform height by one.</RaisedStuff_Gizmos_LowerPlatformsDesc>
+
+  <RaisedStuff_Gizmos_AlreadyAtLevel>Already at level {0}.</RaisedStuff_Gizmos_AlreadyAtLevel>
+
+  <RaisedStuff_Gizmos_LevelPlatforms>Level platforms.</RaisedStuff_Gizmos_LevelPlatforms>
+  <RaisedStuff_Gizmos_LevelPlatformsDesc>Level platform height to that of the lowest member.</RaisedStuff_Gizmos_LevelPlatformsDesc>
+
+  <RaisedStuff_InspectString_PlatformLevelX>Platform level {0}</RaisedStuff_InspectString_PlatformLevelX>
+  <RaisedStuff_InspectString_APlatformToLevelX>{0} platform to level {1}</RaisedStuff_InspectString_APlatformToLevelX>
+
+  <RaisedStuff_InspectString_Raising>Raising</RaisedStuff_InspectString_Raising>
+  <RaisedStuff_InspectString_Lowering>Raising</RaisedStuff_InspectString_Lowering>
+
+</LanguageData>

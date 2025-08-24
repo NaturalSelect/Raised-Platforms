@@ -15,9 +15,10 @@ public static class Patch_RaisedTarget_Projectile_FlyOver
 {
     public static bool Prefix(Thing thing, Projectile __instance, ref bool __result, Vector3 ___origin, Vector3 ___destination)
     {
-        if (thing.Spawned && thing != __instance.intendedTarget && ___origin.ToIntVec3().RaisedGridLevelBase(__instance.Map) != 0 || ___destination.ToIntVec3().RaisedGridLevelBase(__instance.Map) != 0)
+        RaisedStuffManager cachedLevelManager = __instance.Map.GetComponent<RaisedStuffManager>();
+        if (thing.Spawned && thing != __instance.intendedTarget && cachedLevelManager.raisedGrid[___origin.ToIntVec3()] != 0 || cachedLevelManager.raisedGrid[___destination.ToIntVec3()] != 0)
         {
-            __result = !RaisedStuffUtility.LineGoesAbove(___origin.ToIntVec3(), ___destination.ToIntVec3(), thing.Position, __instance.Map);
+            __result = !RaisedStuffUtility.LineGoesAbove(___origin.ToIntVec3(), ___destination.ToIntVec3(), thing.Position, __instance.Map, cachedLevelManager : cachedLevelManager);
             return __result;
         }
         return true;
@@ -30,7 +31,8 @@ public static class Patch_RaisedTarget_Explosion_Attenuate
 {
     public static void PostFix(IntVec3 center, Map map, float radius, ref IEnumerable<IntVec3> __result)
     {
-        __result = __result.Where(x => ((x - center).ToVector3() + Vector3.up * (x.RaisedGridLevelBase(map) - center.RaisedGridLevelBase(map))).magnitude <= radius);
+        RaisedStuffManager cachedLevelManager = map.GetComponent<RaisedStuffManager>();
+        __result = __result.Where(x => ((x - center).ToVector3() + Vector3.up * (cachedLevelManager.raisedGrid[x] - cachedLevelManager.raisedGrid[center])).magnitude <= radius);
     }
 }
 
@@ -42,9 +44,10 @@ public static class Patch_GenSight_LineOfSight
 {
     public static bool Prefix(ref bool __result, IntVec3 start, IntVec3 end, Map map, bool skipFirstCell = false, Func<IntVec3, bool> validator = null, int halfXOffset = 0, int halfZOffset = 0)
     {
-        if (start.RaisedGridLevelBase(map) != 0 || end.RaisedGridLevelBase(map) != 0)
+        RaisedStuffManager cachedLevelManager = map.GetComponent<RaisedStuffManager>();
+        if (cachedLevelManager.raisedGrid[start] != 0 || cachedLevelManager.raisedGrid[end] != 0)
         {
-            __result = RaisedStuffUtility.LineOfSight(start, end, map, skipFirstCell, validator, halfXOffset, halfZOffset);
+            __result = RaisedStuffUtility.LineOfSight(start, end, map, skipFirstCell, validator, halfXOffset, halfZOffset, cachedLevelManager : cachedLevelManager);
             return false;
         }
         return true;
@@ -55,16 +58,17 @@ public static class Patch_GenSight_LineOfSightB
 {
     public static bool Prefix(ref bool __result, IntVec3 start, IntVec3 end, Map map, CellRect startRect, CellRect endRect, Func<IntVec3, bool> validator = null, bool forLeaning = false)
     {
-        if (start.RaisedGridLevelBase(map) != 0 || end.RaisedGridLevelBase(map) != 0)
+        RaisedStuffManager cachedLevelManager = map.GetComponent<RaisedStuffManager>();
+        if (cachedLevelManager.raisedGrid[start] != 0 || cachedLevelManager.raisedGrid[end] != 0)
         {
-            __result = RaisedStuffUtility.LineOfSight(start, end, map, startRect, endRect, validator, forLeaning);
+            __result = RaisedStuffUtility.LineOfSight(start, end, map, startRect, endRect, validator, forLeaning, cachedLevelManager: cachedLevelManager);
             return false;
         }
         return true;
     }
 }
 
-[HarmonyPatch(typeof(GenSight), "LastPointOnLineOfSight")]
+//[HarmonyPatch(typeof(GenSight), "LastPointOnLineOfSight")]
 
 
 
@@ -77,9 +81,10 @@ public static class Patch_RaisedTarget_Beam_HitCell
     public static bool Prefix(IntVec3 source, IntVec3 targetCell, out IntVec3 hitCell, VerbProperties ___verbProps, Thing ___caster, ref bool __result)
     {
         hitCell = default(IntVec3);
-        if (source.RaisedGridLevelBase(___caster.Map) > 0 || targetCell.RaisedGridLevelBase(___caster.Map) > 0)
+        RaisedStuffManager cachedLevelManager = ___caster.Map.GetComponent<RaisedStuffManager>();
+        if (cachedLevelManager.raisedGrid[source] != 0 || cachedLevelManager.raisedGrid[targetCell] != 0)
         {
-            IntVec3 intVec = GenSight.LastPointOnLineOfSight(source, targetCell, (IntVec3 c) => c.InBounds(___caster.Map) && RaisedStuffUtility.LineGoesAbove(source, targetCell, c, ___caster.Map), skipFirstCell: true);
+            IntVec3 intVec = GenSight.LastPointOnLineOfSight(source, targetCell, (IntVec3 c) => c.InBounds(___caster.Map) && RaisedStuffUtility.LineGoesAbove(source, targetCell, c, ___caster.Map, cachedLevelManager : cachedLevelManager), skipFirstCell: true);
             if (___verbProps.beamCantHitWithinMinRange && intVec.DistanceTo(source) < ___verbProps.minRange)
             {
                 __result = false;
@@ -98,7 +103,8 @@ public static class Patch_RaisedTarget_Beam_BurstingTick
 {
     public static bool Prefix(ref int ___ticksToNextPathStep, Thing ___caster, Verb_ShootBeam __instance, VerbProperties ___verbProps, ref MoteDualAttached ___mote, ref Effecter ___endEffecter, ref Sustainer ___sustainer)
     {
-        if (___caster.Position.RaisedGridLevelBase(___caster.Map) > 0 || __instance.InterpolatedPosition.ToIntVec3().RaisedGridLevelBase(___caster.Map) > 0)
+        RaisedStuffManager cachedLevelManager = ___caster.Map.GetComponent<RaisedStuffManager>();
+        if (cachedLevelManager.raisedGrid[___caster.Position] != 0 || cachedLevelManager.raisedGrid[__instance.InterpolatedPosition.ToIntVec3()] != 0)
         {
             ___ticksToNextPathStep--;
             Vector3 vector = __instance.InterpolatedPosition;
@@ -106,7 +112,7 @@ public static class Patch_RaisedTarget_Beam_BurstingTick
             Vector3 vector2 = __instance.InterpolatedPosition - ___caster.Position.ToVector3Shifted();
             float num = vector2.MagnitudeHorizontal();
             Vector3 normalized = vector2.Yto0().normalized;
-            IntVec3 intVec2 = GenSight.LastPointOnLineOfSight(___caster.Position, intVec, (IntVec3 c) => RaisedStuffUtility.LineGoesAbove(___caster.Position, intVec, c, ___caster.Map), skipFirstCell: true);
+            IntVec3 intVec2 = GenSight.LastPointOnLineOfSight(___caster.Position, intVec, (IntVec3 c) => RaisedStuffUtility.LineGoesAbove(___caster.Position, intVec, c, ___caster.Map, cachedLevelManager : cachedLevelManager), skipFirstCell: true);
             if (intVec2.IsValid)
             {
                 num -= (intVec - intVec2).LengthHorizontal;

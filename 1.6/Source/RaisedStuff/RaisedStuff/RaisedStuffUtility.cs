@@ -1,5 +1,4 @@
 ﻿using System;
-
 using UnityEngine;
 using Verse;
 
@@ -8,26 +7,29 @@ namespace RaisedStuff;
 public static class RaisedStuffUtility
 {
     public static float losHeightOffset => RaisedStuff.Settings.lineOfSightHeightOffset;
+    //public static float RaisedGridLevel(this IntVec3 c, Map map) => RaisedGridLevelBase(c, map) + ((map.roofGrid.RoofAt(c) is RoofDef roof) ? (roof.isThickRoof ? RaisedStuff.Settings.thickRoofHeight : RaisedStuff.Settings.defaultRoofHeight) : (c.GetEdifice(map)?.def?.fillPercent ?? 0));
+    //public static int RaisedGridLevelBase(this IntVec3 c, Map map) => map.GetComponent<RaisedStuffManager>().raisedGrid[c];
 
-    public static float RaisedGridLevel(this IntVec3 c, Map map) => RaisedGridLevelBase(c, map) + ((map.roofGrid.RoofAt(c) is RoofDef roof) ? (roof.isThickRoof ? RaisedStuff.Settings.thickRoofHeight : RaisedStuff.Settings.defaultRoofHeight) : (c.GetEdifice(map)?.def?.fillPercent ?? 0));
-    public static int RaisedGridLevelBase(this IntVec3 c, Map map) => map.GetComponent<RaisedStuffManager>().raisedGrid[c];
-
-    public static bool CanPassThrough(IntVec3 c, Map map, float startHeight, float endHeight, float travelFraction)
+    public static bool LineGoesAbove(IntVec3 start, IntVec3 end, IntVec3 cell, Map map, RaisedStuffManager cachedLevelManager = null)
     {
-        float lineHeight = travelFraction * (endHeight - startHeight) + startHeight + losHeightOffset - c.RaisedGridLevelBase(map);
-        if (lineHeight <= 1f && lineHeight > (c.GetEdifice(map)?.def?.fillPercent ?? 0))
+        if (cachedLevelManager == null)
         {
-            return true;
+            cachedLevelManager = map.GetComponent<RaisedStuffManager>();
         }
-        return lineHeight > ((map.roofGrid.RoofAt(c) is RoofDef roof) ? (roof.isThickRoof ? RaisedStuff.Settings.thickRoofHeight : RaisedStuff.Settings.defaultRoofHeight) : 0);
+        return CanPassThrough(cell, map, cachedLevelManager.raisedGrid[start], cachedLevelManager.raisedGrid[end], cell.DistanceTo(start) / start.DistanceTo(end));
     }
 
-    public static bool LineGoesAbove(IntVec3 start, IntVec3 end, IntVec3 cell, Map map)
+    public static bool CanPassThrough(IntVec3 c, Map map, float startHeight, float endHeight, float travelFraction, RaisedStuffManager cachedLevelManager = null)
     {
-        return CanPassThrough(cell, map, start.RaisedGridLevelBase(map), end.RaisedGridLevelBase(map), cell.DistanceTo(start) / start.DistanceTo(end));
+        if (cachedLevelManager == null)
+        {
+            cachedLevelManager = map.GetComponent<RaisedStuffManager>();
+        }
+        float lineHeight = travelFraction * (endHeight - startHeight) + startHeight + losHeightOffset - cachedLevelManager.raisedGrid[c];
+        return cachedLevelManager.FillAtHeight(c, lineHeight);
     }
 
-    public static bool LineOfSight(IntVec3 start, IntVec3 end, Map map, bool skipFirstCell = false, Func<IntVec3, bool> validator = null, int halfXOffset = 0, int halfZOffset = 0)
+    public static bool LineOfSight(IntVec3 start, IntVec3 end, Map map, bool skipFirstCell = false, Func<IntVec3, bool> validator = null, int halfXOffset = 0, int halfZOffset = 0, RaisedStuffManager cachedLevelManager = null)
     {
         if (!start.InBounds(map) || !end.InBounds(map))
         {
@@ -49,8 +51,13 @@ public static class RaisedStuffUtility
         IntVec3 intVec = default(IntVec3);
 
         float tdist = start.DistanceTo(end);
-        float startH = start.RaisedGridLevelBase(map);
-        float endH = end.RaisedGridLevelBase(map);
+
+        if (cachedLevelManager == null)
+        {
+            cachedLevelManager = map.GetComponent<RaisedStuffManager>();
+        }
+        float startH = cachedLevelManager.raisedGrid[start];
+        float endH = cachedLevelManager.raisedGrid[end];
 
         while (num5 > 1)
         {
@@ -58,7 +65,7 @@ public static class RaisedStuffUtility
             intVec.z = num4;
             if (!skipFirstCell || intVec != start)
             {
-                if (!CanPassThrough(intVec, map, startH, endH, intVec.DistanceTo(start) / tdist))
+                if (!CanPassThrough(intVec, map, startH, endH, intVec.DistanceTo(start) / tdist, cachedLevelManager:cachedLevelManager))
                 {
                     return false;
                 }
@@ -85,9 +92,9 @@ public static class RaisedStuffUtility
         return true;
     }
 
-    public static bool LineOfSightToEdges(IntVec3 start, IntVec3 end, Map map, bool skipFirstCell = false, Func<IntVec3, bool> validator = null)
+    public static bool LineOfSightToEdges(IntVec3 start, IntVec3 end, Map map, bool skipFirstCell = false, Func<IntVec3, bool> validator = null, RaisedStuffManager cachedLevelManager = null)
     {
-        if (LineOfSight(start, end, map, skipFirstCell, validator))
+        if (LineOfSight(start, end, map, skipFirstCell, validator, cachedLevelManager : cachedLevelManager))
         {
             return true;
         }
@@ -95,7 +102,7 @@ public static class RaisedStuffUtility
         int num = (start * 2).DistanceToSquared(end * 2);
         for (int i = 0; i < 4; i++)
         {
-            if ((start * 2).DistanceToSquared(end * 2 + GenAdj.CardinalDirections[i]) <= num && LineOfSight(start, end, map, skipFirstCell, validator, GenAdj.CardinalDirections[i].x, GenAdj.CardinalDirections[i].z))
+            if ((start * 2).DistanceToSquared(end * 2 + GenAdj.CardinalDirections[i]) <= num && LineOfSight(start, end, map, skipFirstCell, validator, GenAdj.CardinalDirections[i].x, GenAdj.CardinalDirections[i].z, cachedLevelManager : cachedLevelManager))
             {
                 return true;
             }
@@ -104,7 +111,7 @@ public static class RaisedStuffUtility
         return false;
     }
 
-    public static bool LineOfSight(IntVec3 start, IntVec3 end, Map map, CellRect startRect, CellRect endRect, Func<IntVec3, bool> validator = null, bool forLeaning = false)
+    public static bool LineOfSight(IntVec3 start, IntVec3 end, Map map, CellRect startRect, CellRect endRect, Func<IntVec3, bool> validator = null, bool forLeaning = false, RaisedStuffManager cachedLevelManager = null)
     {
         if (!start.InBounds(map) || !end.InBounds(map))
         {
@@ -125,8 +132,13 @@ public static class RaisedStuffUtility
         IntVec3 intVec = default(IntVec3);
 
         float tdist = start.DistanceTo(end);
-        float startH = start.RaisedGridLevelBase(map);
-        float endH = end.RaisedGridLevelBase(map);
+
+        if (cachedLevelManager == null)
+        {
+            cachedLevelManager = map.GetComponent<RaisedStuffManager>();
+        }
+        float startH = cachedLevelManager.raisedGrid[start];
+        float endH = cachedLevelManager.raisedGrid[end];
 
         while (num5 > 1)
         {
@@ -139,7 +151,7 @@ public static class RaisedStuffUtility
 
             if (!startRect.Contains(intVec))
             {
-                if (!CanPassThrough(intVec, map, startH, endH, intVec.DistanceTo(start) / tdist))
+                if (!CanPassThrough(intVec, map, startH, endH, intVec.DistanceTo(start) / tdist, cachedLevelManager: cachedLevelManager))
                 {
                     return false;
                 }

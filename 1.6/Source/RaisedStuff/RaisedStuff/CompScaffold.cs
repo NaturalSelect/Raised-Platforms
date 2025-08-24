@@ -56,11 +56,11 @@ public class CompScaffold : ThingComp
             // raise platform
 
             Command_Action command_raise = new Command_Action();
-            command_raise.defaultLabel = "Raise platforms";
-            command_raise.defaultDesc = "Raise platform height by one.";
+            command_raise.defaultLabel = "RaisedStuff_Gizmos_RaisePlatforms".Translate();
+            command_raise.defaultDesc = "RaisedStuff_Gizmos_RaisePlatformsDesc".Translate();
             command_raise.icon = RaiseLevelCommandTex;
 
-            if (level >= Props.maxLevel) command_raise.Disable("Cannot raise above level {0}.".Formatted(Props.maxLevel));
+            if (level >= Props.maxLevel) command_raise.Disable("RaisedStuff_Gizmos_AlreadyAtLevel".Translate(Props.maxLevel));
             else command_raise.action = () => UpdateLevelWithWork(targetLevel + 1);
 
             yield return command_raise;
@@ -68,11 +68,11 @@ public class CompScaffold : ThingComp
             // lower platform
 
             Command_Action command_lower = new Command_Action();
-            command_lower.defaultLabel = "Lower platforms";
-            command_lower.defaultDesc = "Lower platform height by one.";
+            command_lower.defaultLabel = "RaisedStuff_Gizmos_LowerPlatforms";
+            command_lower.defaultDesc = "RaisedStuff_Gizmos_LowerPlatformsDesc";
             command_lower.icon = LowerLevelCommandTex;
 
-            if (targetLevel <= Props.minLevel) command_lower.Disable("Already at level {0}.".Formatted(Props.minLevel));
+            if (targetLevel <= Props.minLevel) command_lower.Disable("RaisedStuff_Gizmos_AlreadyAtLevel".Translate(Props.minLevel));
             else command_lower.action = () => UpdateLevelWithWork(targetLevel - 1);
 
             yield return command_lower;
@@ -80,8 +80,8 @@ public class CompScaffold : ThingComp
             // level platforms
 
             Command_Action command_level = new Command_Action();
-            command_level.defaultLabel = "Level platforms";
-            command_level.defaultDesc = "Level platform heights to that of the lowest member.";
+            command_level.defaultLabel = "RaisedStuff_Gizmos_LevelPlatforms".Translate();
+            command_level.defaultDesc = "RaisedStuff_Gizmos_LevelPlatformsDesc".Translate();
             command_level.icon = LevelLevelCommandTex;
             command_level.action = delegate
             {
@@ -97,8 +97,11 @@ public class CompScaffold : ThingComp
     {
         if (!respawningAfterLoad)
         {
-            level = Props.level;
-            targetLevel = level;
+            if (level == 0)
+            {
+                level = Props.level;
+                targetLevel = level;
+            }
         }
         UpdateLevel(level);
     }
@@ -118,10 +121,10 @@ public class CompScaffold : ThingComp
     public override string CompInspectStringExtra()
     {
         StringBuilder sb = new StringBuilder();
-        sb.Append("Platform level {0}".Formatted(level));
+        sb.Append("RaisedStuff_InspectString_PlatformLevelX".Translate(level));
         if (workRemaining > 0)
         {
-            sb.AppendInNewLine("{0} platform to level {1}".Formatted(targetLevel > level ? "Raising" : "Lowering", targetLevel));
+            sb.AppendInNewLine("RaisedStuff_InspectString_APlatformToLevelX".Translate(targetLevel > level ? "RaisedStuff_InspectString_Raising".Translate() : "RaisedStuff_InspectString_Lowering".Translate(), targetLevel));
             sb.AppendInNewLine("WorkLeft".Translate() + ": " + workRemaining.ToStringWorkAmount());
         }
         return sb.ToString();

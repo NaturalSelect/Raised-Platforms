@@ -49,6 +49,23 @@
   </ThingDef>
 
   <ThingDef ParentName="MJ_RaisedStuff_PlatformBase">
+    <defName>MJ_RaisedStuff_Platform5x5c</defName>
+    <label>huge platform</label>
+    <graphicData>
+      <texPath>Things/Building/Platform/RaisedPlatform4x4c</texPath>
+      <drawSize>(5,5.625)</drawSize>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>1200</MaxHitPoints>
+      <WorkToBuild>5500</WorkToBuild>
+    </statBases>
+    <costList>
+      <Steel>450</Steel>
+    </costList>
+    <size>(5,5)</size>
+  </ThingDef>
+
+  <ThingDef ParentName="MJ_RaisedStuff_PlatformBase">
     <defName>MJ_RaisedStuff_Platform4x4c</defName>
     <label>large platform</label>
     <graphicData>
@@ -60,7 +77,7 @@
       <WorkToBuild>2200</WorkToBuild>
     </statBases>
     <costList>
-      <Steel>80</Steel>
+      <Steel>300</Steel>
     </costList>
     <size>(4,4)</size>
   </ThingDef>
@@ -77,7 +94,7 @@
       <WorkToBuild>1000</WorkToBuild>
     </statBases>
     <costList>
-      <Steel>80</Steel>
+      <Steel>150</Steel>
     </costList>
     <size>(3,3)</size>
   </ThingDef>
