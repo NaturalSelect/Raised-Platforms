@@ -47,7 +47,10 @@ public class RaisedStuffManager : MapComponent
 
     public RaisedStuffManager(Map map) : base(map)
     {
-        raisedGrid = new IntGrid(map);
+        if (raisedGrid == null)
+        {
+            raisedGrid = new IntGrid(map);
+        }
 
         mapSizeX = map.Size.x;
         mapSizeZ = map.Size.z;
@@ -111,7 +114,7 @@ public class RaisedStuffManager : MapComponent
 
     public override void ExposeData()
     {
-        Scribe_Values.Look(ref raisedGrid, "raisedGrid");
+        Scribe_Values.Look(ref raisedGrid, "raisedGrid", new IntGrid(base.map));
     }
 
 
