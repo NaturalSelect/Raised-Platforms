@@ -5,11 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Verse;
+using Verse.Noise;
 
 namespace RaisedStuff;
 
+[StaticConstructorOnStartup]
 public class RaisedStuffManager : MapComponent
 {
+    private static int maxFillEntries = 5;
+
+    public enum FillType
+    {
+        Terrain,
+        Edifice,
+        Roof
+    }
     public class FillColumn
     {
         public FillColumn((float, float)[] fillsInput)
@@ -17,17 +27,18 @@ public class RaisedStuffManager : MapComponent
             this.fills = fillsInput;
         }
 
-        private (float, float)[] fills;
+        public (float, float)[] fills;
         public bool FillAtHeight(float height)
         {
             foreach ((float bot, float top) fill in fills)
             {
+                if (fill == (0f, 0f)) continue;
                 if (height > fill.bot && height <= fill.top)
                 {
-                    return false;
+                    return true;
                 }
             }
-            return true;
+            return false;
         }
     }
 
@@ -56,12 +67,6 @@ public class RaisedStuffManager : MapComponent
         mapSizeZ = map.Size.z;
 
         cachedFillColumnGrid = new FillColumn[mapSizeX * mapSizeZ];
-
-        // - empty column fill to prevent errors
-        for (int i = 0; i < cachedFillColumnGrid.Length; i++)
-        {
-            cachedFillColumnGrid[i] = new FillColumn([]);
-        }
     }
 
     public override void FinalizeInit()
@@ -83,38 +88,36 @@ public class RaisedStuffManager : MapComponent
     {
         for (int i = 0; i < raisedGrid.CellsCount; i++)
         {
-            cachedFillColumnGrid[i] = MakeColumnFor(i);
+            if (cachedFillColumnGrid[i] is null)
+            {
+                cachedFillColumnGrid[i] = new FillColumn(new (float, float)[maxFillEntries]);//new FillColumn(new (float, float)[5]);
+            }
+            UpdateColumn(cachedFillColumnGrid[i], i);
         }
     }
 
     // 
     // FOR OTHER MODDERS : Patches altering height profiles should prefix/postfix this method!
     //
-    protected FillColumn MakeColumnFor(int cellInd)
+
+    protected void UpdateColumn(FillColumn fc, int cellInd)
     {
-        List<(float bot, float top)> fills = [];
 
-        // : ground level
-        fills.Add((0, raisedGrid[cellInd]));
+        fc.fills[(int)FillType.Terrain] = (0, raisedGrid[cellInd]);
 
-        // : edifices
-        if (map.edificeGrid[cellInd] is Building b)
-        {
-            fills.Add((raisedGrid[cellInd], raisedGrid[cellInd] + b.def.fillPercent));
-        }
+        fc.fills[(int)FillType.Edifice] = (map.edificeGrid[cellInd] is Building b) ? (raisedGrid[cellInd], raisedGrid[cellInd] + b.def.fillPercent) : (0, 0);
 
-        // : roofs
-        if (map.roofGrid.RoofAt(cellInd) is RoofDef roof)
-        {
-            fills.Add((raisedGrid[cellInd] + 1f, raisedGrid[cellInd] + (roof.isThickRoof ? RaisedStuff.Settings.thickRoofHeight : RaisedStuff.Settings.defaultRoofHeight)));
-        }
-
-        return new FillColumn(fills.ToArray());
+        fc.fills[(int)FillType.Roof] = (map.roofGrid.RoofAt(cellInd) is RoofDef roof) ? (raisedGrid[cellInd] + 1f, raisedGrid[cellInd] + (roof.isThickRoof ? RaisedStuff.Settings.thickRoofHeight : RaisedStuff.Settings.defaultRoofHeight)) : (0, 0);
     }
 
     public override void ExposeData()
     {
-        Scribe_Values.Look(ref raisedGrid, "raisedGrid", new IntGrid(base.map));
+        MapExposeUtility.ExposeInt(
+            map,
+            (IntVec3 c) => raisedGrid[map.cellIndices.CellToIndex(c)],
+            delegate (IntVec3 c, int val) {raisedGrid[map.cellIndices.CellToIndex(c)] = val;},
+            "raisedGrid"
+        );
     }
 
 

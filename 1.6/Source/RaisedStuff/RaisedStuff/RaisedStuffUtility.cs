@@ -25,8 +25,8 @@ public static class RaisedStuffUtility
         {
             cachedLevelManager = map.GetComponent<RaisedStuffManager>();
         }
-        float lineHeight = travelFraction * (endHeight - startHeight) + startHeight + losHeightOffset - cachedLevelManager.raisedGrid[c];
-        return cachedLevelManager.FillAtHeight(c, lineHeight);
+        float lineHeight = travelFraction * (endHeight - startHeight) + startHeight + losHeightOffset;// - cachedLevelManager.raisedGrid[c];
+        return !cachedLevelManager.FillAtHeight(c, lineHeight);
     }
 
     public static bool LineOfSight(IntVec3 start, IntVec3 end, Map map, bool skipFirstCell = false, Func<IntVec3, bool> validator = null, int halfXOffset = 0, int halfZOffset = 0, RaisedStuffManager cachedLevelManager = null)

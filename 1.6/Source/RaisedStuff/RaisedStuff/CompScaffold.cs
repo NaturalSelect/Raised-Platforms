@@ -17,9 +17,9 @@ public class CompScaffold : ThingComp
 
     public CompProperties_Scaffold Props => (CompProperties_Scaffold)props;
 
-    public int level;
+    public int level = -99;
 
-    public int targetLevel;
+    public int targetLevel = -99;
 
     public float workRemaining;
 
@@ -95,15 +95,16 @@ public class CompScaffold : ThingComp
 
     public override void PostSpawnSetup(bool respawningAfterLoad)
     {
-        if (!respawningAfterLoad)
+        if (level == -99)
         {
-            if (level == 0)
-            {
-                level = Props.level;
-                targetLevel = level;
-            }
+            level = Props.level;
+            targetLevel = level;
         }
-        UpdateLevel(level);
+
+        if ((LevelManager?.raisedGrid[parent.Position] ?? 0) != level)
+        {
+            UpdateLevel(level);
+        }
     }
     public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
     {

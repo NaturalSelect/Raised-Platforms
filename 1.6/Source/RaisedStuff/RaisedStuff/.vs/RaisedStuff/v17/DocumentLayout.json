@@ -5,6 +5,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{530C59BF-C16E-482D-9F18-9D5B748C6EB7}|RaisedStuff.csproj|c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\mjeiouws_raisedstuff\\1.6\\source\\raisedstuff\\raisedstuff\\raisedstuffmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{530C59BF-C16E-482D-9F18-9D5B748C6EB7}|RaisedStuff.csproj|solutionrelative:raisedstuffmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{530C59BF-C16E-482D-9F18-9D5B748C6EB7}|RaisedStuff.csproj|c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\mjeiouws_raisedstuff\\1.6\\source\\raisedstuff\\raisedstuff\\raisedstuffutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{530C59BF-C16E-482D-9F18-9D5B748C6EB7}|RaisedStuff.csproj|solutionrelative:raisedstuffutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{530C59BF-C16E-482D-9F18-9D5B748C6EB7}|RaisedStuff.csproj|c:\\program files (x86)\\steam\\steamapps\\common\\rimworld\\mods\\mjeiouws_raisedstuff\\1.6\\source\\raisedstuff\\raisedstuff\\compscaffold.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{530C59BF-C16E-482D-9F18-9D5B748C6EB7}|RaisedStuff.csproj|solutionrelative:compscaffold.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +22,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CompScaffold.cs",
+              "DocumentMoniker": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\CompScaffold.cs",
+              "RelativeDocumentMoniker": "CompScaffold.cs",
+              "ToolTip": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\CompScaffold.cs",
+              "RelativeToolTip": "CompScaffold.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAAAGcAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-25T11:48:00.749Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RaisedStuffUtility.cs",
+              "DocumentMoniker": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\RaisedStuffUtility.cs",
+              "RelativeDocumentMoniker": "RaisedStuffUtility.cs",
+              "ToolTip": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\RaisedStuffUtility.cs",
+              "RelativeToolTip": "RaisedStuffUtility.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAYwBsAAABmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-25T11:42:38.498Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,7 +58,7 @@
               "RelativeDocumentMoniker": "RaisedStuffManager.cs",
               "ToolTip": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RimWorld\\Mods\\Mjeiouws_RaisedStuff\\1.6\\Source\\RaisedStuff\\RaisedStuff\\RaisedStuffManager.cs",
               "RelativeToolTip": "RaisedStuffManager.cs",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAowHIAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAswGcAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-24T14:05:55.646Z",
               "EditorCaption": ""
