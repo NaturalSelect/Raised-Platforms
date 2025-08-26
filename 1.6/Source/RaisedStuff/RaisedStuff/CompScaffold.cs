@@ -26,7 +26,10 @@ public class CompScaffold : ThingComp
     protected RaisedStuffManager cachedLevelManager;
     public RaisedStuffManager LevelManager {
         get {
-            if (cachedLevelManager == null) cachedLevelManager = parent.Map.GetComponent<RaisedStuffManager>();
+            if (cachedLevelManager == null)
+            {
+                cachedLevelManager = parent.Map.GetComponent<RaisedStuffManager>();
+            }
             return cachedLevelManager;
         }
     }
@@ -101,6 +104,8 @@ public class CompScaffold : ThingComp
             targetLevel = level;
         }
 
+        cachedLevelManager = parent.Map.GetComponent<RaisedStuffManager>();
+
         if ((LevelManager?.raisedGrid[parent.Position] ?? 0) != level)
         {
             UpdateLevel(level);
@@ -108,7 +113,10 @@ public class CompScaffold : ThingComp
     }
     public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
     {
-        UpdateLevel(0);
+        foreach(IntVec3 c in parent.OccupiedRect())
+        {
+            LevelManager.raisedGrid[c] = 0;
+        }
     }
     public void UpdateLevel(int targLevel)
     {

@@ -29,6 +29,12 @@ public class WorkGiver_RebuildPlatform : WorkGiver_Scanner
             return null;
         }
 
+        IntVec3 result;
+        if (!pawn.CanReserveAndReach(t, PathEndMode.Touch, MaxPathDanger(pawn)))
+        {
+            return null;
+        }
+
         if (t.IsBurning())
         {
             return null;
