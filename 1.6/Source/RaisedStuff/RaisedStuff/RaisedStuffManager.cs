@@ -53,7 +53,7 @@ public class RaisedStuffManager : MapComponent
 
     public bool FillAtHeight(IntVec3 c, float height)
     {
-        return cachedFillColumnGrid[CellIndicesUtility.CellToIndex(c, mapSizeX)].FillAtHeight(height);
+        return cachedFillColumnGrid[CellIndicesUtility.CellToIndex(c, mapSizeX)]?.FillAtHeight(height) ?? false;
     }
 
     public RaisedStuffManager(Map map) : base(map)
@@ -71,6 +71,17 @@ public class RaisedStuffManager : MapComponent
 
     public override void FinalizeInit()
     {
+        if (raisedGrid == null)
+        {
+            raisedGrid = new IntGrid(map);
+        }
+        if (cachedFillColumnGrid == null)
+        {
+            mapSizeX = map.Size.x;
+            mapSizeZ = map.Size.z;
+            cachedFillColumnGrid = new FillColumn[mapSizeX * mapSizeZ];
+        }
+
         CacheFillColumns();
 
         tickInterval = RaisedStuff.Settings.levelCachingTickInterval;
@@ -103,7 +114,7 @@ public class RaisedStuffManager : MapComponent
     protected void UpdateColumn(FillColumn fc, int cellInd)
     {
 
-        fc.fills[(int)FillType.Terrain] = (0, raisedGrid[cellInd]);
+        fc.fills[(int)FillType.Terrain] = (-20, raisedGrid[cellInd]);
 
         fc.fills[(int)FillType.Edifice] = (map.edificeGrid[cellInd] is Building b) ? (raisedGrid[cellInd], raisedGrid[cellInd] + b.def.fillPercent) : (0, 0);
 
