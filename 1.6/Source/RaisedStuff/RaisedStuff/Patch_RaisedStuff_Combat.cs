@@ -44,6 +44,10 @@ public static class Patch_GenSight_LineOfSight
 {
     public static bool Prefix(ref bool __result, IntVec3 start, IntVec3 end, Map map, bool skipFirstCell = false, Func<IntVec3, bool> validator = null, int halfXOffset = 0, int halfZOffset = 0)
     {
+        if (!start.InBounds(map) || !end.InBounds(map))
+        {
+            return true;
+        }
         RaisedStuffManager cachedLevelManager = map.GetComponent<RaisedStuffManager>();
         if (cachedLevelManager.raisedGrid[start] != 0 || cachedLevelManager.raisedGrid[end] != 0)
         {
@@ -58,6 +62,10 @@ public static class Patch_GenSight_LineOfSightB
 {
     public static bool Prefix(ref bool __result, IntVec3 start, IntVec3 end, Map map, CellRect startRect, CellRect endRect, Func<IntVec3, bool> validator = null, bool forLeaning = false)
     {
+        if (!start.InBounds(map) || !end.InBounds(map))
+        {
+            return true;
+        }
         RaisedStuffManager cachedLevelManager = map.GetComponent<RaisedStuffManager>();
         if (cachedLevelManager.raisedGrid[start] != 0 || cachedLevelManager.raisedGrid[end] != 0)
         {
