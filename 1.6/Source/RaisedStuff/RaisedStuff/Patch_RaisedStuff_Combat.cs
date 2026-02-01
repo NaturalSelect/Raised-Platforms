@@ -46,7 +46,8 @@ public static class Patch_GenSight_LineOfSight
     {
         if (!start.InBounds(map) || !end.InBounds(map))
         {
-            return true;
+            __result = true;
+            return false;
         }
         RaisedStuffManager cachedLevelManager = map.GetComponent<RaisedStuffManager>();
         if (cachedLevelManager.raisedGrid[start] != 0 || cachedLevelManager.raisedGrid[end] != 0)
@@ -64,7 +65,8 @@ public static class Patch_GenSight_LineOfSightB
     {
         if (!start.InBounds(map) || !end.InBounds(map))
         {
-            return true;
+            __result = true;
+            return false;
         }
         RaisedStuffManager cachedLevelManager = map.GetComponent<RaisedStuffManager>();
         if (cachedLevelManager.raisedGrid[start] != 0 || cachedLevelManager.raisedGrid[end] != 0)
